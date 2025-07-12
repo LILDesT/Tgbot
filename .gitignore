@@ -1,2 +1,17 @@
 venv/Lib/site-packages/_cffi_backend.cp39-win_amd64.pyd
 venv
+bot/env.py
+bot/tmp/
+bot/tmp/*
+bot/tmp/*.pdf
+bot/tmp/*.txt
+bot/tmp/*.json
+bot/tmp/*.csv
+bot/tmp/*.xlsx
+bot/tmp/*.xls
+bot/tmp/*.docx
+bot/tmp/*.doc
+bot/tmp/*.pptx
+bot/tmp/*.ppt
+tmp/3f81a5a9-2743-4782-ade6-8389e0f5faf3.pdf
+tmp/15989295-6878-421a-abe3-2094497603c4.pdf

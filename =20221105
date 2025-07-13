@@ -1,0 +1,5 @@
+Requirement already satisfied: pdfminer.six in c:\users\shami\desktop\tgbot\venv\lib\site-packages (20250506)
+Requirement already satisfied: charset-normalizer>=2.0.0 in c:\users\shami\desktop\tgbot\venv\lib\site-packages (from pdfminer.six) (3.4.2)
+Requirement already satisfied: cryptography>=36.0.0 in c:\users\shami\desktop\tgbot\venv\lib\site-packages (from pdfminer.six) (45.0.5)
+Requirement already satisfied: cffi>=1.14 in c:\users\shami\desktop\tgbot\venv\lib\site-packages (from cryptography>=36.0.0->pdfminer.six) (1.17.1)
+Requirement already satisfied: pycparser in c:\users\shami\desktop\tgbot\venv\lib\site-packages (from cffi>=1.14->cryptography>=36.0.0->pdfminer.six) (2.22)

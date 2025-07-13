@@ -1,8 +1,16 @@
 # bot/main.py
 import os
-from aiogram import Bot, Dispatcher
+import logging
+from aiogram import Bot, Dispatcher, F
 from aiogram.filters import CommandStart
 from bot.env import TG_TOKEN
+
+# Настраиваем логирование
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 # Импортируем роутеры
 from bot.handlers.resume import router as resume_router
@@ -14,11 +22,16 @@ bot = Bot(token=TG_TOKEN)
 dp = Dispatcher()
 
 # Подключаем маршруты
-dp.include_router(resume_router)
+logger.info("Подключаю роутеры...")
 dp.include_router(callbacks_router)
+logger.info("✅ Роутер callbacks подключен")
+dp.include_router(resume_router)
+logger.info("✅ Роутер резюме подключен")
 
 @dp.message(CommandStart())
 async def start_handler(message):
+    logger.info(f"Команда /start от пользователя {message.from_user.id if message.from_user else 'Unknown'}")
+    
     # Получаем параметры команды /start
     args = message.text.split()[1:] if len(message.text.split()) > 1 else []
     
@@ -38,23 +51,25 @@ async def start_handler(message):
             reply_markup=get_start_keyboard()
         )
 
-@dp.message()
+@dp.message(F.text)
 async def any_message_handler(message):
     """
-    Обработчик для любого сообщения - показывает стартовое меню
+    Обработчик для текстовых сообщений - показывает стартовое меню
     """
-    # Игнорируем команды и документы
-    if message.text and message.text.startswith('/'):
-        return
+    logger.info(f"Получено текстовое сообщение от {message.from_user.id if message.from_user else 'Unknown'}")
     
-    if message.document:
+    # Игнорируем команды
+    if message.text.startswith('/'):
+        logger.info("Игнорирую команду")
         return
     
     # Для любого другого текста показываем стартовое меню
+    logger.info("Показываю стартовое меню")
     await message.answer(
         "👋 Добро пожаловать! Выберите действие:",
         reply_markup=get_start_keyboard()
     )
 
 if __name__ == "__main__":
+    logger.info("Запускаю бота...")
     dp.run_polling(bot)

@@ -55,3 +55,6 @@ core/__pycache__/skills_extractor.cpython-39.pyc
 bot/handlers/__pycache__/resume.cpython-39.pyc
 bot/__pycache__/main.cpython-39.pyc
 bot/__pycache__/main.cpython-39.pyc
+.env
+Dockerfile
+.gitignore
